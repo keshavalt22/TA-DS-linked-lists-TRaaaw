@@ -23,16 +23,63 @@ step-5: After repeating all the above steps you will get a sorted array
 2. Create a function named `mergeSort` that accepts an array of numbers and returns the array with sorted values. The elements should be in ascending order. Use the bubble sorting algorithms. After writing the function test it with an array and check if you are getting the right output.
 
 ```js
-function mergeSort() {
-  // your code
+
+function mergeSort(array) {
+  if(array.length <= 1>){
+    return array;
+  }
+  const midIndex = Math.floor(array.length/2);
+  const leftArray = array.slice(0, midIndex);
+  const rightArray = array.slice(midIndex);
+
+  return merge(
+    mergeSort(leftArray),
+    mergeSort(rightArray)
+  );
+};
+
+function merge(left, right) {
+  let resultArray = [],
+    leftIndex = 0,
+    rightIndex = 0;
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      resultArray.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      resultArray.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+  return resultArray
+    .concat(left.slice(leftIndex))
+    .concat(right.slice(rightIndex));
 }
 ```
 
 3. Create a function named `quickSort` that accepts an array of numbers and returns the array with sorted values. The elements should be in ascending order. Use the selection sorting algorithms. After writing the function test it with an array and check if you are getting the right output.
 
 ```js
-function quickSort() {
-  // your code
+function quickSort(origArray) {
+  if (origArray.length <= 1) {
+    return origArray;
+  } else {
+    let left = [];
+    let right = [];
+    let newArray = [];
+    let pivot = origArray.pop();
+    let length = origArray.length;
+
+    for (let i = 0; i < length; i++) {
+      if (origArray[i] <= pivot) {
+        left.push(origArray[i]);
+      } else {
+        right.push(origArray[i]);
+      }
+    }
+
+    return newArray.concat(quickSort(left), pivot, quickSort(right));
+  }
 }
 ```
 
