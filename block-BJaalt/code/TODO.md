@@ -34,6 +34,7 @@ Output: 3
 4. For a given number, find all the prime numbers in an array from zero to that number.
 
 ```js
+
 // Test
 let primeNumbers = getAllPrimeNumbers(100); // [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 ```
